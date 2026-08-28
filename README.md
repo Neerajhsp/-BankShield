@@ -1,4 +1,5 @@
-# BankShield AI
+# BankShield
+
 
 BankShield AI is a full-stack banking application built to simulate the day-to-day operations of a digital bank along with real-time fraud monitoring.
 
