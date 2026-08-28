@@ -1,0 +1,30 @@
+-- =========================================================
+-- BankShield AI — Reference / structural seed data
+-- =========================================================
+-- IMPORTANT: user passwords are hashed with bcrypt at runtime (via
+-- passlib), so they cannot be safely hard-coded as static SQL INSERTs
+-- here — a bcrypt hash embedded in this file would need to have been
+-- generated with the exact same library/cost-factor your environment
+-- uses, and shipping a fake/mismatched hash would silently break login.
+--
+-- Instead, run the seeding script AFTER installing backend
+-- requirements and configuring backend/.env:
+--
+--   cd backend
+--   pip install -r requirements.txt
+--   python ../database/seed_data.py
+--
+-- That script creates:
+--   - 1 admin account      : admin@bankshield.ai / Admin@123
+--   - 12 customer accounts : customer@bankshield.ai / Customer@123 (+ 11 more)
+--   - Beneficiaries per customer
+--   - 2-4 months of normal transaction history per customer (so the AI
+--     risk engine has a real average-transaction baseline)
+--   - One explicit HIGH-RISK fraud demonstration transaction
+--     (new beneficiary + a transfer far above the customer's normal
+--     amount) so the full alert -> hold -> fraud case -> report ->
+--     admin decision flow can be demonstrated end-to-end immediately
+--     after setup.
+--
+-- schema.sql must be imported first to create the tables this script
+-- populates.

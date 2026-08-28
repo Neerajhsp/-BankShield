@@ -1,0 +1,27 @@
+# Optional convenience file — spins up MySQL only. The FastAPI backend
+# and Vite frontend are intentionally run natively (see README) so you
+# can iterate on them directly in VS Code; only the database benefits
+# from being containerized for a zero-setup start.
+version: "3.8"
+
+services:
+  mysql:
+    image: mysql:8.0
+    container_name: bankshield-mysql
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+      MYSQL_DATABASE: bankshield_ai
+    ports:
+      - "3306:3306"
+    volumes:
+      - bankshield_mysql_data:/var/lib/mysql
+      - ./database/schema.sql:/docker-entrypoint-initdb.d/1-schema.sql
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-uroot", "-ppassword"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+volumes:
+  bankshield_mysql_data:
