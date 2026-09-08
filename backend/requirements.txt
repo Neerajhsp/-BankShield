@@ -16,3 +16,4 @@ pandas==2.2.3
 numpy==2.1.1
 joblib==1.4.2
 email-validator==2.2.0
+resend
