@@ -35,7 +35,7 @@ class Settings(BaseSettings):
 
     ML_MODEL_PATH: str = os.getenv(
         "ML_MODEL_PATH",
-        os.path.join(os.path.dirname(__file__), "..", "..", "..", "ml", "fraud_model.pkl"),
+        os.path.join(os.path.dirname(__file__), "..", "..", "ml", "fraud_model.pkl"),
     )
 
     class Config:
